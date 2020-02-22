@@ -1,12 +1,52 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200219231233_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200219231233_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200219234346_AddNotifications.cs" />
+    <Compile Remove="Migrations\20200219234346_AddNotifications.Designer.cs" />
+    <Compile Remove="Migrations\20200219234632_AddGoalFk.cs" />
+    <Compile Remove="Migrations\20200219234632_AddGoalFk.Designer.cs" />
+    <Compile Remove="Migrations\20200219234836_AddGoalFk.cs" />
+    <Compile Remove="Migrations\20200219234836_AddGoalFk.Designer.cs" />
+    <Compile Remove="Migrations\20200222122917_TaskGoalReference.cs" />
+    <Compile Remove="Migrations\20200222122917_TaskGoalReference.Designer.cs" />
+    <Compile Remove="Migrations\20200222125416_TaskGoalReference.cs" />
+    <Compile Remove="Migrations\20200222125416_TaskGoalReference.Designer.cs" />
+    <Compile Remove="Migrations\20200222125525_TaskGoalReference.cs" />
+    <Compile Remove="Migrations\20200222125525_TaskGoalReference.Designer.cs" />
+    <Compile Remove="Migrations\20200222130654_FK.cs" />
+    <Compile Remove="Migrations\20200222130654_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222131358_FK.cs" />
+    <Compile Remove="Migrations\20200222131358_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222131655_FK.cs" />
+    <Compile Remove="Migrations\20200222131655_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222132005_FK.cs" />
+    <Compile Remove="Migrations\20200222132005_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222132112_FK.cs" />
+    <Compile Remove="Migrations\20200222132112_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222132207_FK.cs" />
+    <Compile Remove="Migrations\20200222132207_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222132349_FK.cs" />
+    <Compile Remove="Migrations\20200222132349_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222132449_NotifyFK.cs" />
+    <Compile Remove="Migrations\20200222132449_NotifyFK.Designer.cs" />
+    <Compile Remove="Migrations\20200222132719_FK.cs" />
+    <Compile Remove="Migrations\20200222132719_FK.Designer.cs" />
+    <Compile Remove="Migrations\20200222141057_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200222141057_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200222141219_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200222141219_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

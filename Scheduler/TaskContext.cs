@@ -2,9 +2,6 @@
 
 namespace Scheduler
 {
-	/// <summary>
-	/// Task Table Info
-	/// </summary>
 	public class TaskContext : DbContext
 	{
 		public DbSet<Task> Tasks { get; set; }

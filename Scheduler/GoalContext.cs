@@ -2,9 +2,9 @@
 
 namespace Scheduler
 {
-	public class TaskContext : DbContext
+	public class GoalContext : DbContext
 	{
-		public DbSet<Task> Tasks { get; set; }
+		public DbSet<Goal> Goals { get; set; }
 
 		public DbSet<Notification> Notifications { get; set; }
 

@@ -9,7 +9,7 @@ using Scheduler;
 
 namespace Scheduler.Migrations
 {
-    [DbContext(typeof(TaskContext))]
+    [DbContext(typeof(GoalContext))]
     [Migration("20200222142020_InitialCreate")]
     partial class InitialCreate
     {

@@ -8,7 +8,7 @@ using Scheduler;
 
 namespace Scheduler.Migrations
 {
-    [DbContext(typeof(TaskContext))]
+    [DbContext(typeof(GoalContext))]
     partial class TaskContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Scheduler
 {
@@ -7,8 +6,8 @@ namespace Scheduler
 	{
 		public long NotificationId { get; set; }
 
-		public long TaskId { get; set; }
-		public virtual Task Task { get; set; }
+		public long GoalId { get; set; }
+		public virtual Goal Goal { get; set; }
 
 		public DateTime NotificationStartTime { get; set; }
 	}

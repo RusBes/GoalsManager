@@ -13,9 +13,9 @@ namespace Scheduler
 
 		public string Group { get; set; }
 
-		public DateTime DateTimeStart { get; set; }
+		public DateTime? DateTimeStart { get; set; }
 
-		public DateTime DateTimeEnd { get; set; }
+		public DateTime? DateTimeEnd { get; set; }
 
 		public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 	}

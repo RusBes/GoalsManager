@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Scheduler;
 
 namespace Scheduler.Migrations
 {
     [DbContext(typeof(GoalContext))]
-    partial class TaskContextModelSnapshot : ModelSnapshot
+    [Migration("20200312180527_TaskTableChangedToGoalTable")]
+    partial class TaskTableChangedToGoalTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,29 +21,9 @@ namespace Scheduler.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Scheduler.Notification", b =>
+            modelBuilder.Entity("Scheduler.Goal", b =>
                 {
-                    b.Property<long>("NotificationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateTimeStart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("TaskId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("NotificationId");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("Notifications");
-                });
-
-            modelBuilder.Entity("Scheduler.Task", b =>
-                {
-                    b.Property<long>("TaskId")
+                    b.Property<long>("GoalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -61,28 +43,38 @@ namespace Scheduler.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<long?>("TaskParentId")
-                        .HasColumnType("bigint");
+                    b.HasKey("GoalId");
 
-                    b.HasKey("TaskId");
-
-                    b.HasIndex("TaskParentId");
-
-                    b.ToTable("Tasks");
+                    b.ToTable("Goals");
                 });
 
             modelBuilder.Entity("Scheduler.Notification", b =>
                 {
-                    b.HasOne("Scheduler.Task", "Task")
-                        .WithMany("Notifications")
-                        .HasForeignKey("TaskId");
+                    b.Property<long>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("GoalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("NotificationStartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("NotificationId");
+
+                    b.HasIndex("GoalId");
+
+                    b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Scheduler.Task", b =>
+            modelBuilder.Entity("Scheduler.Notification", b =>
                 {
-                    b.HasOne("Scheduler.Task", "TaskParent")
-                        .WithMany("Goals")
-                        .HasForeignKey("TaskParentId");
+                    b.HasOne("Scheduler.Goal", "Goal")
+                        .WithMany("Notifications")
+                        .HasForeignKey("GoalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

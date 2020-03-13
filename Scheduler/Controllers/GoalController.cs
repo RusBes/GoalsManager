@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Scheduler.Controllers
 {
@@ -6,84 +8,110 @@ namespace Scheduler.Controllers
 	[ApiController]
 	public class GoalController : ControllerBase
 	{
-		[HttpPost]
+		private readonly GoalContext _goalContext;
+
+		public GoalController(GoalContext goalContext)
+		{
+			_goalContext = goalContext;
+		}
+
+		#region Goal CRUD operations
+		[Route("api/[controller]/[action]")]
+		[HttpPost("AddGoal")]
 		public long AddGoal(Goal goal)
 		{
-			using (var goalContext = new GoalContext())
-			{
-				goalContext.Add(goal);
-				goalContext.SaveChanges();
-				return goal.GoalId;
-			}
+			goal.GoalId = 0;
+			_goalContext.Add(goal);
+			_goalContext.SaveChanges();
+
+			return goal.GoalId;
 		}
 
-		[HttpPut]
+		[Route("api/[controller]/[action]")]
+		[HttpPut("UpdateGoal")]
 		public void UpdateGoal(Goal goal)
 		{
-			using (var goalContext = new GoalContext())
+			var currentGoal = _goalContext.Goals.Find(goal.GoalId);
+
+			if (currentGoal != null)
 			{
-				goalContext.Update(goal);
-				goalContext.SaveChanges();
+				_goalContext.Entry(currentGoal).CurrentValues.SetValues(goal);
+				_goalContext.SaveChanges();
 			}
 		}
 
-		[HttpDelete]
+		[Route("api/[controller]/[action]")]
+		[HttpDelete("DeleteGoal")]
 		public void DeleteGoal(Goal goal)
 		{
-			using (var goalContext = new GoalContext())
+			var currentGoal = _goalContext.Goals.Find(goal.GoalId);
+
+			if (currentGoal != null)
 			{
-				goalContext.Remove(goal);
-				goalContext.SaveChanges();
+				_goalContext.Remove(currentGoal);
+				_goalContext.SaveChanges();
 			}
 		}
 
-		[HttpGet]
+		[Route("api/[controller]/[action]")]
+		[HttpGet("GetGoalById")]
 		public Goal GetGoalById(long goalId)
 		{
-			using (var goalContext = new GoalContext())
-			{
-				return goalContext.Goals.Find(goalId);
-			}
+			return _goalContext.Goals.Find(goalId);
 		}
 
-		[HttpPost]
+		[Route("api/[controller]/[action]")]
+		[HttpGet("GetAllGoals")]
+		public IEnumerable<Goal> GetAllGoals()
+		{
+			return _goalContext.Goals;
+		}
+		#endregion
+
+		#region Notification CRUD operations
+		[Route("api/[controller]/[action]")]
+		[HttpPost("AddNotification")]
 		public long AddNotification(Notification notification)
 		{
-			using (var goalContext = new GoalContext())
-			{
-				goalContext.Add(notification);
-				goalContext.SaveChanges();
-				return notification.NotificationId;
-			}
+			notification.NotificationId = 0;
+			_goalContext.Add(notification);
+			_goalContext.SaveChanges();
+
+			return notification.NotificationId;
 		}
 
-		[HttpPut]
+		[Route("api/[controller]/[action]")]
+		[HttpPut("UpdateNotification")]
 		public void UpdateNotification(Notification notification)
 		{
-			using (var goalContext = new GoalContext())
+			var currentNotification = _goalContext.Notifications.Find(notification.NotificationId);
+
+			if (currentNotification != null)
 			{
-				goalContext.Update(notification);
-				goalContext.SaveChanges();
+				_goalContext.Entry(currentNotification).CurrentValues.SetValues(notification);
+				_goalContext.SaveChanges();
 			}
 		}
 
-		[HttpDelete]
+		[Route("api/[controller]/[action]")]
+		[HttpDelete("DeleteNotification")]
 		public void DeleteNotification(Notification notification)
 		{
-			using (var goalContext = new GoalContext())
+			var currentNotification = _goalContext.Notifications.Find(notification.NotificationId);
+
+			if (currentNotification != null)
 			{
-				goalContext.Remove(notification);
-				goalContext.SaveChanges();
+				_goalContext.Remove(currentNotification);
+				_goalContext.SaveChanges();
 			}
 		}
 
-		[HttpGet]
-		public Notification GetNotificationById(long notificationId)
+		[Route("api/[controller]/[action]")]
+		[HttpGet("GetNotificationsByGoalId")]
+		public IEnumerable<Notification> GetNotificationsByGoalId(long goalId)
 		{
-			using (var goalContext = new GoalContext())
-			{
-				return goalContext.Notifications.Find(notificationId);
-			}
+			return _goalContext.Notifications.Where(el => el.GoalId == goalId);
 		}
+		#endregion
 	}
 }

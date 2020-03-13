@@ -42,9 +42,9 @@ namespace Scheduler.Controllers
 
 		[Route("api/[controller]/[action]")]
 		[HttpDelete("DeleteGoal")]
-		public void DeleteGoal(Goal goal)
+		public void DeleteGoal(long goalId)
 		{
-			var currentGoal = _goalContext.Goals.Find(goal.GoalId);
+			var currentGoal = _goalContext.Goals.Find(goalId);
 
 			if (currentGoal != null)
 			{
@@ -95,9 +95,9 @@ namespace Scheduler.Controllers
 
 		[Route("api/[controller]/[action]")]
 		[HttpDelete("DeleteNotification")]
-		public void DeleteNotification(Notification notification)
+		public void DeleteNotification(long notificationId)
 		{
-			var currentNotification = _goalContext.Notifications.Find(notification.NotificationId);
+			var currentNotification = _goalContext.Notifications.Find(notificationId);
 
 			if (currentNotification != null)
 			{

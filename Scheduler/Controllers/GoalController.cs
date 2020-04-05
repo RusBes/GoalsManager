@@ -16,18 +16,15 @@ namespace Scheduler.Controllers
 		}
 
 		#region Goal CRUD operations
-		[Route("api/[controller]/[action]")]
 		[HttpPost("AddGoal")]
 		public long AddGoal(Goal goal)
 		{
-			goal.GoalId = 0;
 			_goalContext.Add(goal);
 			_goalContext.SaveChanges();
 
 			return goal.GoalId;
 		}
 
-		[Route("api/[controller]/[action]")]
 		[HttpPut("UpdateGoal")]
 		public void UpdateGoal(Goal goal)
 		{
@@ -40,7 +37,6 @@ namespace Scheduler.Controllers
 			}
 		}
 
-		[Route("api/[controller]/[action]")]
 		[HttpDelete("DeleteGoal")]
 		public void DeleteGoal(long goalId)
 		{
@@ -53,14 +49,12 @@ namespace Scheduler.Controllers
 			}
 		}
 
-		[Route("api/[controller]/[action]")]
 		[HttpGet("GetGoalById")]
 		public Goal GetGoalById(long goalId)
 		{
 			return _goalContext.Goals.Find(goalId);
 		}
 
-		[Route("api/[controller]/[action]")]
 		[HttpGet("GetAllGoals")]
 		public IEnumerable<Goal> GetAllGoals()
 		{
@@ -69,18 +63,16 @@ namespace Scheduler.Controllers
 		#endregion
 
 		#region Notification CRUD operations
-		[Route("api/[controller]/[action]")]
-		[HttpPost("AddNotification")]
-		public long AddNotification(Notification notification)
+		[HttpPost("{goalId}/AddNotification")]
+		public long AddNotification(long goalId, Notification notification)
 		{
-			notification.NotificationId = 0;
+			notification.GoalId = goalId;
 			_goalContext.Add(notification);
 			_goalContext.SaveChanges();
 
 			return notification.NotificationId;
 		}
 
-		[Route("api/[controller]/[action]")]
 		[HttpPut("UpdateNotification")]
 		public void UpdateNotification(Notification notification)
 		{
@@ -93,7 +85,6 @@ namespace Scheduler.Controllers
 			}
 		}
 
-		[Route("api/[controller]/[action]")]
 		[HttpDelete("DeleteNotification")]
 		public void DeleteNotification(long notificationId)
 		{
@@ -106,8 +97,7 @@ namespace Scheduler.Controllers
 			}
 		}
 
-		[Route("api/[controller]/[action]")]
-		[HttpGet("GetNotificationsByGoalId")]
+		[HttpGet("{goalId}/GetNotificationsByGoalId")]
 		public IEnumerable<Notification> GetNotificationsByGoalId(long goalId)
 		{
 			return _goalContext.Notifications.Where(el => el.GoalId == goalId);

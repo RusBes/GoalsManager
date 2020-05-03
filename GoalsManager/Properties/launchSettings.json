@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Scheduler": {
+    "GoalsManager": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",

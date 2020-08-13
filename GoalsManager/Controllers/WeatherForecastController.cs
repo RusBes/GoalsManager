@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Scheduler.Controllers
+namespace GoalsManager.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]

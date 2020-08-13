@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Scheduler.Migrations
+namespace GoalsManager.Migrations
 {
     public partial class InitialCreate : Migration
     {

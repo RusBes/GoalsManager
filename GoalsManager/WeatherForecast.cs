@@ -1,6 +1,6 @@
 using System;
 
-namespace Scheduler
+namespace GoalsManager
 {
 	public class WeatherForecast
 	{

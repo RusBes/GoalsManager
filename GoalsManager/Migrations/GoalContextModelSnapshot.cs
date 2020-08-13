@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Scheduler;
+using GoalsManager;
 
-namespace Scheduler.Migrations
+namespace GoalsManager.Migrations
 {
     [DbContext(typeof(GoalContext))]
-    [Migration("20200312181525_ChangeGoalDateFieldsToNulable")]
-    partial class ChangeGoalDateFieldsToNulable
+    partial class GoalContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +19,7 @@ namespace Scheduler.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Scheduler.Goal", b =>
+            modelBuilder.Entity("GoalsManager.Goal", b =>
                 {
                     b.Property<long>("GoalId")
                         .ValueGeneratedOnAdd()
@@ -48,7 +46,7 @@ namespace Scheduler.Migrations
                     b.ToTable("Goals");
                 });
 
-            modelBuilder.Entity("Scheduler.Notification", b =>
+            modelBuilder.Entity("GoalsManager.Notification", b =>
                 {
                     b.Property<long>("NotificationId")
                         .ValueGeneratedOnAdd()
@@ -68,9 +66,9 @@ namespace Scheduler.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Scheduler.Notification", b =>
+            modelBuilder.Entity("GoalsManager.Notification", b =>
                 {
-                    b.HasOne("Scheduler.Goal", "Goal")
+                    b.HasOne("GoalsManager.Goal", "Goal")
                         .WithMany("Notifications")
                         .HasForeignKey("GoalId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Scheduler
+namespace GoalsManager
 {
 	public class Goal
 	{

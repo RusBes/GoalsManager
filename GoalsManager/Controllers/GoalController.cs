@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Scheduler.Controllers
+namespace GoalsManager.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]

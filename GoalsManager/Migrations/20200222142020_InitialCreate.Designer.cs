@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Scheduler;
+using GoalsManager;
 
-namespace Scheduler.Migrations
+namespace GoalsManager.Migrations
 {
     [DbContext(typeof(GoalContext))]
     [Migration("20200222142020_InitialCreate")]
@@ -21,7 +21,7 @@ namespace Scheduler.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Scheduler.Notification", b =>
+            modelBuilder.Entity("GoalsManager.Notification", b =>
                 {
                     b.Property<long>("NotificationId")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace Scheduler.Migrations
                     b.ToTable("Notifications");
                 });
 
-            modelBuilder.Entity("Scheduler.Task", b =>
+            modelBuilder.Entity("GoalsManager.Task", b =>
                 {
                     b.Property<long>("TaskId")
                         .ValueGeneratedOnAdd()
@@ -73,16 +73,16 @@ namespace Scheduler.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("Scheduler.Notification", b =>
+            modelBuilder.Entity("GoalsManager.Notification", b =>
                 {
-                    b.HasOne("Scheduler.Task", "Task")
+                    b.HasOne("GoalsManager.Task", "Task")
                         .WithMany("Notifications")
                         .HasForeignKey("TaskId");
                 });
 
-            modelBuilder.Entity("Scheduler.Task", b =>
+            modelBuilder.Entity("GoalsManager.Task", b =>
                 {
-                    b.HasOne("Scheduler.Task", "TaskParent")
+                    b.HasOne("GoalsManager.Task", "TaskParent")
                         .WithMany("Goals")
                         .HasForeignKey("TaskParentId");
                 });

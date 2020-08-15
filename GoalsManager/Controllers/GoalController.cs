@@ -6,13 +6,20 @@ namespace GoalsManager.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class GoalController : ControllerBase
+	public class GoalsController : Controller
 	{
 		private readonly GoalContext _goalContext;
 
-		public GoalController(GoalContext goalContext)
+		public GoalsController(GoalContext goalContext)
 		{
 			_goalContext = goalContext;
+		}
+
+		[HttpGet("/")]
+		public IActionResult Index()
+		{
+			// TODO route view to Views/Home/Index.cshtml
+			return View(GetAllGoals());
 		}
 
 		#region Goal CRUD operations

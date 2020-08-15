@@ -19,7 +19,8 @@ namespace GoalsManager
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<GoalContext>();
-			services.AddMvc(opt => opt.EnableEndpointRouting = false);
+			services.AddMvc(opt => opt.EnableEndpointRouting = false)
+				.AddRazorRuntimeCompilation();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +29,7 @@ namespace GoalsManager
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
+				app.UseBrowserLink();
 			}
 
 			app.UseHttpsRedirection();

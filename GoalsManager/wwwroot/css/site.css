@@ -78,6 +78,7 @@ body {
 body {
     margin: 0;
     background-color: #212222;
+    color: #FAFBFD;
 }
 
 a {
@@ -85,7 +86,6 @@ a {
 }
 
 h1 {
-    color: #FAFBFD;
     margin: 0;
     padding: 10px 0;
 }
@@ -122,7 +122,6 @@ main {
 
 .goal-card-elements {
     flex: 1 1 100%;
-    color: #FAFBFD
 }
 
 .goal-bottom-block {

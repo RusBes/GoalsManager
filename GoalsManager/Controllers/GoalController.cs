@@ -16,10 +16,24 @@ namespace GoalsManager.Controllers
 		}
 
 		[HttpGet("/")]
+		[HttpGet("/[controller]", Name = "GoalsView")]
 		public IActionResult Index()
 		{
 			// TODO route view to Views/Home/Index.cshtml
 			return View(GetAllGoals());
+		}
+
+		[HttpGet("/[controller]/add", Name = "AddGoalView")]
+		public IActionResult AddGoal()
+		{
+			return View();
+		}
+
+		[HttpPost("/[controller]/add", Name = "AddGoalAction")]
+		public IActionResult AddGoalAndReturnView([FromForm] Goal goal)
+		{
+			AddGoal(goal);
+			return View("AddGoal");
 		}
 
 		#region Goal CRUD operations

@@ -9,10 +9,11 @@
 
 <div class="goals-wrapper">
 
-    @foreach (var item in Model)
-    {
+	@foreach (var item in Model)
+	{
 
 		<div class="goal-card goal-@item.Status.ToString().ToLower()">
+		@*<div class="goal-card goal-created">*@
 			<div class="goal-card-elements">
 				<div class="goal-title">@item.Name</div>
 				<div class="goal-bottom-block">
@@ -25,13 +26,12 @@
 			</div>
 			<div class="link-block">
 				<a asp-action="Edit" asp-route-id="@item.GoalId">Edit</a>
-				<a asp-action="Details" asp-route-id="@item.GoalId">Details</a>
 				<a asp-action="Delete" asp-route-id="@item.GoalId">Delete</a>
 			</div>
 		</div>
-        
-    }
+
+	}
 
 </div>
 
-<a asp-controller="Goals" asp-action="AddGoal" class="create-goal-button">+</a>
+<a asp-route="AddGoalView" class="create-goal-button">+</a>

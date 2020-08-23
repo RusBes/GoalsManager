@@ -30,10 +30,23 @@ namespace GoalsManager.Controllers
 		}
 
 		[HttpPost("/[controller]/add", Name = "AddGoalAction")]
-		public IActionResult AddGoalAndReturnView([FromForm] Goal goal)
+		public IActionResult AddGoalAction([FromForm] Goal goal)
 		{
 			AddGoal(goal);
 			return View("AddGoal");
+		}
+
+		[HttpGet("/[controller]/{id}/edit", Name = "EditGoalView")]
+		public IActionResult EditGoal(long id)
+		{
+			return View(GetGoalById(id));
+		}
+
+		[HttpPost("/[controller]/{id}/edit", Name = "EditGoalAction")]
+		public IActionResult EditGoalAction([FromForm] Goal goal)
+		{
+			UpdateGoal(goal);
+			return View("EditGoal", goal);
 		}
 
 		#region Goal CRUD operations

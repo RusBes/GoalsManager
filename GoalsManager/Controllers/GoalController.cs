@@ -49,6 +49,19 @@ namespace GoalsManager.Controllers
 			return View("EditGoal", goal);
 		}
 
+		[HttpGet("/[controller]/{id}/delete", Name = "DeleteGoalView2")]
+		public IActionResult DeleteGoal(long id)
+		{
+			return View(GetGoalById(id));
+		}
+
+		[HttpPost("/[controller]/{id}/delete", Name = "DeleteGoalAction")]
+		public IActionResult DeleteGoalAction([FromForm] Goal goal)
+		{
+			DeleteGoalById(goal.GoalId);
+			return RedirectToAction("Index");
+		}
+
 		#region Goal CRUD operations
 		[HttpPost("AddGoal")]
 		public long AddGoal(Goal goal)
@@ -72,7 +85,7 @@ namespace GoalsManager.Controllers
 		}
 
 		[HttpDelete("DeleteGoal")]
-		public void DeleteGoal(long goalId)
+		public void DeleteGoalById(long goalId)
 		{
 			var currentGoal = _goalContext.Goals.Find(goalId);
 

@@ -1,0 +1,58 @@
+header {
+	margin: -15px -15px 0 -15px;
+	background-color: #292C35;
+	border-radius: 0 0 25px 25px;
+	padding: 10px;
+	text-align: center;
+}
+
+.form-group {
+	margin: 10px 0;
+}
+
+.form-control {
+    color: #FAFBFD;
+    background: #292C35;
+	margin-left: 50px;
+	padding: 10px;
+	border-radius: 15px 15px 0 0;
+	border: none;
+}
+
+.form-control:focus {
+	/* prevent default behavior */
+	outline: none;
+	box-sizing: border-box;
+	border-bottom: 2px solid #FAFBFD;
+	margin-bottom: -2px;
+}
+
+option {
+	
+}
+
+
+
+input[type="datetime-local"] {
+	position: relative;
+	padding: 10px;
+  }
+  
+  input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+	color: transparent;
+	background: none;
+	z-index: 1;
+  }
+  
+  input[type="datetime-local"]:before {
+	color: transparent;
+	background: none;
+	display: block;
+	font-family: 'FontAwesome';
+	content: '\f073';
+	/* This is the calendar icon in FontAwesome */
+	width: 15px;
+	position: absolute;
+	right: 16px;
+	color: #FAFBFD;
+  }
